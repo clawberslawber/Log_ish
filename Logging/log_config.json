@@ -13,6 +13,10 @@
         "info_and_below":{
             "()": "main_log.filter_info_and_below",
             "level": "INFO"
+        },
+        "debug": {
+            "()": "main_log.filter_debug", 
+            "level": "DEBUG"
         }
     },
     "handlers": {
@@ -34,6 +38,21 @@
             "formatter": "simple", 
             "filename": "main.log", 
             "mode": "w"
+        },
+        "vnv_file": {
+            "class": "logging.FileHandler", 
+            "level": "CRITICAL",
+            "formatter": "not_simple",
+            "filename": "vnv.log", 
+            "mode": "w"
+        },
+        "debug_file": {
+            "class": "logging.FileHandler", 
+            "level": "DEBUG", 
+            "formatter": "simple",
+            "filename": "debug.log", 
+            "mode": "w",
+            "filters": ["debug"]
         }
     },
     "root":{
@@ -41,7 +60,9 @@
         "handlers": [
             "stderr",
             "stdout",
-            "file"
+            "file",
+            "vnv_file",
+            "debug_file"
         ]
     }
 }
